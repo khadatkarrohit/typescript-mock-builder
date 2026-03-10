@@ -1,4 +1,4 @@
-import type { ParsedInterface, ParsedProperty } from './reader.ts';
+import type { ParsedInterface, ParsedProperty } from './reader.js';
 
 export interface MockGeneratorOptions {
   varName?: string;

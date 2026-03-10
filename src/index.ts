@@ -2,12 +2,12 @@
 import { resolve } from 'node:path';
 import { Command } from 'commander';
 import pc from 'picocolors';
-import { generateMock, generateMockFactory } from './mock-generator.ts';
-import { readInterfaces } from './reader.ts';
+import { generateMock, generateMockFactory } from './mock-generator.js';
+import { readInterfaces } from './reader.js';
 
 export { generateMock, generateMockFactory, readInterfaces };
-export type { ParsedInterface, ParsedProperty } from './reader.ts';
-export type { MockGeneratorOptions } from './mock-generator.ts';
+export type { ParsedInterface, ParsedProperty } from './reader.js';
+export type { MockGeneratorOptions } from './mock-generator.js';
 
 const program = new Command();
 
