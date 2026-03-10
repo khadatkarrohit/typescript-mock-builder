@@ -1,0 +1,40 @@
+{
+  "name": "typescript-mock-builder",
+  "version": "1.0.0",
+  "description": "Reads a TypeScript interface and generates a typed mock object — zero config CLI",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "bin": {
+    "typescript-mock-builder": "src/index.ts"
+  },
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "start": "node --import tsx/esm src/index.ts",
+    "test": "node --import tsx/esm --test tests/**/*.test.ts",
+    "prepublishOnly": "npm test && npm run build",
+    "lint": "biome lint src tests",
+    "format": "biome format --write src tests"
+  },
+  "keywords": ["typescript", "mock", "test", "interface", "generator", "cli"],
+  "author": "Rohit Khadatkar",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^14.0.3",
+    "picocolors": "^1.1.1",
+    "ts-morph": "^27.0.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.6",
+    "@types/node": "^25.4.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
