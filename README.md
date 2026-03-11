@@ -1,14 +1,29 @@
 # typescript-mock-builder
 
+[![npm version](https://img.shields.io/npm/v/typescript-mock-builder)](https://www.npmjs.com/package/typescript-mock-builder)
+[![npm downloads](https://img.shields.io/npm/dm/typescript-mock-builder)](https://www.npmjs.com/package/typescript-mock-builder)
+
 Zero-config CLI and library that reads a TypeScript interface and instantly generates a typed mock object or factory function — no compiler plugins, no schemas, no setup.
+
+**[View on npm →](https://www.npmjs.com/package/typescript-mock-builder)**
 
 ## Install
 
 ```bash
+# As a dev dependency (recommended)
+npm install -D typescript-mock-builder
+
+# Or globally
 npm install -g typescript-mock-builder
-# or run directly
+```
+
+## Quick start
+
+```bash
 npx typescript-mock-builder ./src/types/User.ts
 ```
+
+Paste the output directly into your test file. Done.
 
 ## Usage
 
@@ -65,6 +80,12 @@ function createUser(overrides: Partial<User> = {}): User {
 }
 ```
 
+Use in tests:
+
+```ts
+const user = createUser({ email: 'custom@test.com' });
+```
+
 ## Options
 
 | Flag | Description |
@@ -77,7 +98,7 @@ function createUser(overrides: Partial<User> = {}): User {
 ### Examples
 
 ```bash
-# Specific interface
+# Specific interface from a file with multiple interfaces
 npx typescript-mock-builder ./src/types.ts --interface Product
 
 # With export + custom name
@@ -91,8 +112,8 @@ npx typescript-mock-builder ./src/types.ts --factory --export
 
 The generator uses name-based heuristics first, then type-based fallbacks:
 
-| Property name pattern | Value |
-|-----------------------|-------|
+| Property name pattern | Generated value |
+|-----------------------|-----------------|
 | `id`, `*Id` | `1` |
 | `email`, `*Email` | `'mock@example.com'` |
 | `url`, `*Url`, `*Uri` | `'https://example.com'` |
@@ -101,8 +122,8 @@ The generator uses name-based heuristics first, then type-based fallbacks:
 | `phone`, `*Phone` | `'+1234567890'` |
 | `createdAt`, `updatedAt`, `*Date`, `*At` | `new Date()` |
 
-| Type | Value |
-|------|-------|
+| Type | Generated value |
+|------|-----------------|
 | `string` | `'mock-<propName>'` |
 | `number` | `0` |
 | `boolean` | `false` |
